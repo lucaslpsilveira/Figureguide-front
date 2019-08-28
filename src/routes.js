@@ -1,31 +1,13 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { isAuthenticated } from "./services/auth";
-import SignUp from "./pages/SignUp";
+const SignUp = React.lazy(() => import("./pages/SignUp"));
+const SignIn = React.lazy(() => import("./pages/SignIn"));
+const Home = React.lazy(() => import("./pages/Home"));
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
-  />
-);
-
-const Routes = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={() => <h1>Login</h1>} />
-      <Route path="/signup" component={SignUp} />
-      <PrivateRoute path="/app" component={() => <h1>App</h1>} />
-      <Route path="*" component={() => <h1>Page not found</h1>} />
-    </Switch>
-  </BrowserRouter>
-);
+const Routes = [
+  { path: '/', exact:true, name: 'Home', component: Home },
+  { path: '/signin', exact:true, name: 'SignIn', component: SignIn },
+  { path: '/signup', exact:true, name: 'SignUp', component: SignUp }  
+];
 
 export default Routes;
