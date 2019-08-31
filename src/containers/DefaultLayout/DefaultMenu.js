@@ -4,7 +4,7 @@ import React, { Component } from "react";
 //import api from "../../services/api";
 //import { login } from "../../services/auth";
 
-class Home extends Component {
+class DefaultMenu extends Component {
     constructor(props) {
         super(props);
 
@@ -51,4 +51,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default DefaultMenu;

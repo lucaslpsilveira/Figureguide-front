@@ -11,6 +11,11 @@ const Home =  Loadable({
     loading
 });
 
+const Admin =  Loadable({
+  loader: () => import('./containers/SB-Admin-2'),
+  loading
+});
+
 // Pages
 const SignIn = Loadable({
     loader: () => import('./pages/SignIn'),
@@ -43,7 +48,7 @@ class App extends Component {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/signIn" component={SignIn} />
                     <Route path="/signup" component={SignUp} />
-                    <PrivateRoute path="/app" component={() => <h1>App</h1>} />
+                    <PrivateRoute path="/admin" component={Admin} />
                     <Route path="*" component={() => <h1>Page not found</h1>} />
                 </Switch>
             </BrowserRouter>
